@@ -1,263 +1,69 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101114" />
     <meta
       name="description"
-      content="Portfólio de Maicon Santos Silva, desenvolvedor web freelancer especializado em sites, sistemas web, APIs e automações com IA."
+      content="Maicon Santos Silva. Design, conteúdo rico, imagens comerciais, SEO e desenvolvimento para e-commerce."
     />
-    <title>Maicon Santos Silva | Desenvolvedor Web Freelancer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Maicon Santos — Design, conteúdo e tecnologia"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <meta
+      property="og:description"
+      content="Experiências digitais comerciais que combinam criatividade, SEO, inteligência artificial e desenvolvimento web."
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Maicon Santos — Design, conteúdo e tecnologia para e-commerce</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Maicon Santos Silva",
+        "jobTitle": "Profissional de conteúdo para e-commerce",
+        "knowsAbout": [
+          "Conteúdo rico para PDPs",
+          "SEO",
+          "Design comercial",
+          "Desenvolvimento frontend",
+          "Inteligência artificial"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Voltar ao início">
-        <span>MS</span>
-        Maicon Santos
-      </a>
-
-      <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="site-nav" aria-label="Navegação principal">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#processo">Processo</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="hero section-band">
-        <div class="hero-copy">
-          <p class="eyebrow">Desenvolvedor web freelancer</p>
-          <h1>Sites, sistemas web e automações que resolvem processos reais.</h1>
-          <p class="hero-text">
-            Crio experiências web responsivas com HTML, CSS, JavaScript, APIs, front-end,
-            back-end e ferramentas de IA para pequenos negócios, equipes internas e projetos
-            digitais que precisam sair do papel.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#contato">Solicitar orçamento</a>
-            <a class="button secondary" href="#projetos">Ver projetos</a>
-          </div>
-        </div>
-
-        <aside class="hero-panel" aria-label="Resumo profissional">
-          <div>
-            <span class="metric">Projeto em produção</span>
-            <strong>FastSEO</strong>
-            <p>Ferramenta web criada para apoiar uma equipe de produtos em fluxo de SEO.</p>
-          </div>
-          <div class="stack-list">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>APIs</span>
-            <span>IA</span>
-            <span>Front + Back</span>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section" id="sobre">
-        <div class="about-grid">
-          <div class="about-copy">
-            <p class="eyebrow">Sobre mim</p>
-            <h2>Sou Maicon Santos, desenvolvedor web e estudante de Sistemas de Informação.</h2>
-            <p>
-              Estou construindo minha carreira criando sites, sistemas web e automações para
-              resolver problemas reais. Tenho interesse em produtos digitais, integração com APIs,
-              banco de dados e ferramentas de IA, sempre buscando soluções simples de usar e úteis
-              para a rotina de quem precisa ganhar tempo, organização e eficiência.
-            </p>
-          </div>
-
-          <div class="skills-panel" aria-label="Competências principais">
-            <h3>Qualificações</h3>
-            <div class="skill-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Front-end</span>
-              <span>Back-end</span>
-              <span>APIs</span>
-              <span>Autenticação</span>
-              <span>Banco de dados</span>
-              <span>GitHub Pages</span>
-              <span>Ferramentas de IA</span>
-              <span>Automação de processos</span>
-              <span>SEO técnico</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="servicos">
-        <div class="section-heading">
-          <p class="eyebrow">Como posso ajudar</p>
-          <h2>Serviços para quem precisa vender, organizar ou automatizar.</h2>
-        </div>
-
-        <div class="service-grid">
-          <article class="service-card">
-            <span class="service-icon">01</span>
-            <h3>Sites e landing pages</h3>
-            <p>
-              Páginas profissionais, responsivas e objetivas para captar clientes, apresentar
-              serviços e fortalecer a presença online.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <span class="service-icon">02</span>
-            <h3>Sistemas web sob medida</h3>
-            <p>
-              Painel administrativo, cadastro de clientes, controle de pedidos, áreas internas
-              e ferramentas para simplificar rotinas.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <span class="service-icon">03</span>
-            <h3>APIs e automações com IA</h3>
-            <p>
-              Integrações entre ferramentas, formulários inteligentes, fluxos automatizados e
-              recursos com IA para ganhar produtividade.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section project-section" id="projetos">
-        <div class="section-heading">
-          <p class="eyebrow">Projeto em destaque</p>
-          <h2>FastSEO: automação de fichas técnicas para escala e eficiência.</h2>
-        </div>
-
-        <article class="featured-project">
-          <div class="project-content">
-            <p class="project-tag">Aplicação web em produção</p>
-            <h3>FastSEO</h3>
-            <p>
-              Desenvolvi uma ferramenta web com acesso restrito por conta Google autorizada,
-              criada para apoiar a organização e otimização de fichas técnicas com foco em SEO.
-              A versão original é interna; para demonstração pública, preparei uma demo com
-              dados fictícios e um estudo de caso sem informações sensíveis.
-            </p>
-
-            <ul class="project-points">
-              <li>Autenticação com Google para acesso restrito</li>
-              <li>Interface responsiva para rotina de equipe</li>
-              <li>Banco de dados e histórico de fichas processadas</li>
-              <li>Fluxo voltado para conteúdo, produtos e SEO</li>
-              <li>Projeto publicado e acessível em ambiente real</li>
-            </ul>
-
-            <div class="project-actions">
-              <a class="button primary" href="fastseo-demo.html">Ver demo pública</a>
-              <a class="button secondary" href="case-fastseo.html">Ler estudo de caso</a>
-              <a
-                class="button secondary"
-                href="https://maiconsantossilvah-dot.github.io/FastSEO_1.0V/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Tela de produção
-              </a>
-            </div>
-          </div>
-
-          <div class="project-preview" aria-label="Prévia visual do FastSEO">
-            <div class="preview-window">
-              <div class="window-bar">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="login-mock">
-                <strong><span>Fast</span>SEO</strong>
-                <p>Acesso restrito à equipe.</p>
-                <div>Entrar com Google</div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="section" id="processo">
-        <div class="section-heading">
-          <p class="eyebrow">Forma de trabalho</p>
-          <h2>Um processo simples para tirar o projeto do papel.</h2>
-        </div>
-
-        <div class="timeline">
-          <article>
-            <span>1</span>
-            <h3>Entendimento</h3>
-            <p>Alinho objetivo, publico, funcionalidades, referencias e o resultado esperado.</p>
-          </article>
-          <article>
-            <span>2</span>
-            <h3>Protótipo e desenvolvimento</h3>
-            <p>Transformo a ideia em uma interface funcional, com ajustes rápidos durante o caminho.</p>
-          </article>
-          <article>
-            <span>3</span>
-            <h3>Publicação e suporte</h3>
-            <p>Entrego o projeto publicado, revisado e pronto para uso, com orientação clara.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section contact-section" id="contato">
-        <div class="contact-copy">
-          <p class="eyebrow">Vamos conversar</p>
-          <h2>Precisa de um site, sistema ou automação?</h2>
-          <p>
-            Me envie uma mensagem com a ideia do projeto. Posso ajudar desde uma página simples
-            até uma ferramenta web com login, APIs e recursos de IA.
-          </p>
-        </div>
-
-        <div class="contact-actions">
-          <a
-            class="button primary"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=maiconsantossilvah@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Enviar e-mail
-          </a>
-          <a class="button secondary" href="https://wa.me/qr/R6ER3ERGXMGQC1" target="_blank" rel="noreferrer">
-            Chamar no WhatsApp
-          </a>
-          <a class="button secondary" href="https://www.linkedin.com/in/maicon-santos-silva-3ba402346" target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>Maicon Santos Silva - Desenvolvedor Web Freelancer</p>
-      <div class="footer-links">
-        <a href="https://github.com/maiconsantossilvah-dot" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/seu-usuario" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="#top">Voltar ao topo</a>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <div id="root">
+      <main
+        style="
+          font-family: system-ui;
+          padding: 40px;
+          max-width: 800px;
+          margin: auto;
+        "
+      >
+        <h1>Maicon Santos Silva</h1>
+        <h2>Design, conteúdo e tecnologia para e-commerce.</h2>
+        <p>
+          Transformo informações de produtos em experiências digitais
+          comerciais, combinando criatividade, SEO, inteligência artificial e
+          desenvolvimento web.
+        </p>
+        <p>
+          Conteúdo rico para PDPs, imagens comerciais, banners, infográficos,
+          SEO, catálogo, desenvolvimento web e automações.
+        </p>
+        <noscript
+          ><p>
+            Ative o JavaScript para explorar os projetos e canais de contato.
+          </p></noscript
+        >
+      </main>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
