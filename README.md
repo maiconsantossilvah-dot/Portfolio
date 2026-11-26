@@ -189,14 +189,10 @@ Com Docker e Supabase CLI instalados, `npx supabase start` usa `supabase/config.
 
 ## Publicação gratuita no GitHub Pages
 
-1. No GitHub, confira o nome real do repositório e mantenha `package-lock.json` versionado.
-2. Em **Settings → Pages**, selecione **GitHub Actions** como fonte.
-3. Em **Settings → Secrets and variables → Actions**, cadastre os secrets `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY`. Embora públicos no build, usar secrets facilita a configuração do workflow.
-4. Cadastre a variável `VITE_SITE_URL` com a URL completa da aplicação, por exemplo `https://USUARIO.github.io/REPOSITORIO/`.
-5. O workflow infere `VITE_BASE_PATH=/NOME_DO_REPOSITORIO/`. Se necessário, defina a variável `VITE_BASE_PATH` para substituí-lo. Para domínio próprio ou repositório `USUARIO.github.io`, use `/`. Para nomes não ASCII, confira o caminho e seu encoding na URL do Pages.
-6. Atualize as URLs de recuperação permitidas no Supabase.
-7. Faça commit/push quando desejar. O workflow **Qualidade** executa checks em push/PR. Para publicar, abra **Actions → Publicar no GitHub Pages → Run workflow**. O deploy foi deixado manual; esta implementação não envia commits nem publica automaticamente.
-8. Verifique a URL retornada pelo job `deploy` e teste as rotas com atualização de página.
+1. Em **Settings → Pages → Source**, selecione **GitHub Actions**. A opção **Deploy from a branch** pode servir o `index.html` do código-fonte e exibir apenas o texto básico, pois o navegador não recebe o JavaScript compilado pelo Vite.
+2. Com o workflow em `main`, abra **Actions → Publicar no GitHub Pages → Run workflow** e selecione `main`. A publicação é manual. O workflow **Qualidade** executa as verificações em push e pull request.
+3. Abra a URL retornada pelo job `deploy` e confira a home e as rotas após atualizar a página. O workflow lê a URL e o caminho base do GitHub Pages. Se precisar substituí-los, cadastre `VITE_SITE_URL` ou `VITE_BASE_PATH` nas variáveis do repositório.
+4. Para ativar o CMS, cadastre `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` em **Settings → Secrets and variables → Actions**, configure as URLs de recuperação no Supabase e execute o workflow novamente. Com os dois secrets vazios, a publicação mostra o conteúdo público inicial e o catálogo vazio.
 
 O build roda verificações e gera `dist/`, `.nojekyll`, `robots.txt` e sitemap da home quando `VITE_SITE_URL` está configurado. Não é necessário Render, VPS ou um backend Node em produção. As decisões de base path seguem o [guia de deploy do Vite](https://vite.dev/guide/static-deploy.html).
 
