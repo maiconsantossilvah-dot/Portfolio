@@ -1,33 +1,57 @@
 import { Link } from "react-router-dom";
-import type { Project } from "../../types/content";
+import { ArrowUpRight } from "lucide-react";
+import type { PublicProject } from "../../repositories/publicProjects";
 import { useSite } from "../../hooks/SiteContext";
 import { MediaImage } from "../MediaImage";
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  lead = false,
+}: {
+  project: PublicProject;
+  lead?: boolean;
+}) {
   const { data } = useSite();
+  const cover = project.sample?.cover;
   return (
     <Link
-      className={`project-card project-${project.project_type}`}
+      className={lead ? "project-card project-lead" : "project-card"}
       to={`/projetos/${project.slug}`}
     >
-      <div className="project-cover">
-        {project.cover_media_id ? (
-          <MediaImage id={project.cover_media_id} thumbnail />
-        ) : (
-          <span className="project-cover-type">
-            {project.project_type === "app" ? "{ }" : "✳"}
-          </span>
-        )}
-        <span className="project-open">Ver projeto</span>
-      </div>
+      {(project.cover_media_id || cover) && (
+        <div className="project-cover">
+          {cover ? (
+            <img
+              src={cover.src}
+              alt=""
+              width={cover.width}
+              height={cover.height}
+              loading={lead ? "eager" : "lazy"}
+              decoding="async"
+            />
+          ) : (
+            project.cover_media_id && (
+              <MediaImage
+                id={project.cover_media_id}
+                thumbnail={!lead}
+                eager={lead}
+              />
+            )
+          )}
+        </div>
+      )}
       <div className="project-caption">
         <div className="project-categories">
+          {project.sample && <span>{project.sample.category}</span>}
           {data.categories
             .filter((c) => project.category_ids.includes(c.id))
             .map((c) => (
               <span key={c.id}>{c.name}</span>
             ))}
         </div>
-        <h3>{project.title}</h3>
+        <div className="project-title">
+          <h3>{project.title}</h3>
+          <ArrowUpRight size={22} aria-hidden="true" />
+        </div>
         <p>{project.excerpt}</p>
         <div className="tags">
           {data.technologies

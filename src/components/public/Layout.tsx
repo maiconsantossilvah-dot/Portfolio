@@ -36,9 +36,6 @@ export default function PublicLayout() {
       <header className="site-header">
         <div className="container header-inner">
           <Link to="/" className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              m<span>.</span>
-            </span>
             <span>{data.profile.name}</span>
           </Link>
           <nav
@@ -52,11 +49,7 @@ export default function PublicLayout() {
             <NavLink to="/projetos">Projetos</NavLink>
             {visible("services") && <Link to="/?sec=services">Serviços</Link>}
             {visible("about") && <Link to="/?sec=about">Sobre</Link>}
-            {visible("contact") && (
-              <Link to="/?sec=contact" className="nav-contact">
-                Vamos conversar
-              </Link>
-            )}
+            {visible("contact") && <Link to="/?sec=contact">Contato</Link>}
           </nav>
           <div className="header-tools">
             <button
@@ -83,9 +76,6 @@ export default function PublicLayout() {
       <Outlet />
       <footer className="site-footer container">
         <Link to="/" className="brand">
-          <span className="brand-mark" aria-hidden="true">
-            m<span>.</span>
-          </span>
           {data.profile.name}
         </Link>
         <p>{data.settings.institutional_text}</p>

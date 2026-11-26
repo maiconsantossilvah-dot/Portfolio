@@ -33,4 +33,4 @@ As fases acima indicam implementação no código e validação local, não prov
 - Informar URL e chave pública no ambiente e cadastrar redirects de recuperação.
 - Configurar GitHub Pages/Actions. Nenhuma infraestrutura paga é criada automaticamente.
 
-O site sem configuração mostra o conteúdo profissional inicial e estados vazios reais. Não simula persistência, login ou projetos publicados.
+O site sem configuração mostra o conteúdo profissional inicial e o estudo de caso estático da PDP Salon Line. Login e gerenciamento de conteúdo dependem do Supabase.

@@ -3,16 +3,12 @@ import { Search, X } from "lucide-react";
 import { useSite } from "../hooks/SiteContext";
 import { useAsync } from "../hooks/useAsync";
 import { useMetadata } from "../hooks/useMetadata";
-import { configured } from "../lib/supabase";
-import { listProjects } from "../repositories/content";
-import type { Project } from "../types/content";
+import { listPublicProjects } from "../repositories/publicProjects";
 import { Empty, ErrorState, Loading } from "../components/ui";
 import { ProjectCard } from "../components/public/ProjectCard";
-const load = () =>
-  configured ? listProjects() : Promise.resolve([] as Project[]);
 export default function Projects() {
   const { data } = useSite();
-  const state = useAsync(load, []);
+  const state = useAsync(listPublicProjects, []);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [technology, setTechnology] = useState("");
@@ -51,14 +47,7 @@ export default function Projects() {
   };
   return (
     <main id="main-content" className="container catalog section">
-      <p className="eyebrow">Trabalho em perspectiva</p>
-      <h1>
-        Projetos &<br />
-        <span className="muted">possibilidades.</span>
-      </h1>
-      <p className="catalog-intro">
-        Conteúdo, imagem e código a serviço de uma boa experiência de compra.
-      </p>
+      <h1>Projetos</h1>
       <div className="catalog-controls">
         <label className="search-field">
           <Search size={18} />

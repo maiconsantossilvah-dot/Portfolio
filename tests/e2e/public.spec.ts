@@ -28,12 +28,12 @@ test("navegação pública, temas, estados vazios e rota administrativa", async 
     .click();
   await expect(page).toHaveURL(/#\/projetos/);
   await expect(
-    page.getByRole("heading", { name: "Novos estudos de caso em breve" }),
+    page.getByRole("heading", { name: "Salon Line — Liso Ostentação" }),
   ).toBeVisible();
   await page.getByRole("searchbox", { name: "Pesquisar projetos" }).fill("PDP");
   await page.reload();
   await expect(
-    page.getByRole("heading", { name: "Projetos & possibilidades." }),
+    page.getByRole("heading", { name: "Projetos", exact: true }),
   ).toBeVisible();
   if (isMobile) {
     await page.getByRole("button", { name: "Abrir menu" }).click();

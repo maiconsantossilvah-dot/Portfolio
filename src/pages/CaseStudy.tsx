@@ -1,12 +1,13 @@
 import { useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
-import { getProject } from "../repositories/content";
+import {
+  getPublicProject,
+  type PublicProject,
+} from "../repositories/publicProjects";
 import { useAsync } from "../hooks/useAsync";
 import { useSite } from "../hooks/SiteContext";
 import { useMetadata } from "../hooks/useMetadata";
-import type { Project } from "../types/content";
-import { configured } from "../lib/supabase";
 import { safeUrl } from "../lib/validation";
 import { Empty, ErrorState, Loading } from "../components/ui";
 import { MediaImage } from "../components/MediaImage";
@@ -15,10 +16,11 @@ export function CaseContent({
   project,
   preview = false,
 }: {
-  project: Project;
+  project: PublicProject;
   preview?: boolean;
 }) {
   const { data } = useSite();
+  const sample = project.sample;
   const facts = [
     ["Produto", project.product_name],
     ["Marca", project.brand_name],
@@ -43,10 +45,12 @@ export function CaseContent({
           </p>
         )}
         <p className="eyebrow">
-          {data.categories
-            .filter((c) => project.category_ids.includes(c.id))
-            .map((c) => c.name)
-            .join(" / ") || "Estudo de caso"}
+          {sample?.category ||
+            data.categories
+              .filter((c) => project.category_ids.includes(c.id))
+              .map((c) => c.name)
+              .join(" / ") ||
+            "Estudo de caso"}
         </p>
         <h1>{project.title}</h1>
         {project.excerpt && <p className="case-excerpt">{project.excerpt}</p>}
@@ -58,10 +62,22 @@ export function CaseContent({
             ))}
         </div>
       </div>
-      {project.cover_media_id && (
-        <div className="container case-cover">
-          <MediaImage id={project.cover_media_id} eager />
-        </div>
+      {sample ? (
+        <figure className="container case-cover">
+          <img
+            src={sample.cover.src}
+            alt={sample.cover.alt}
+            width={sample.cover.width}
+            height={sample.cover.height}
+          />
+          <figcaption>{sample.cover.caption}</figcaption>
+        </figure>
+      ) : (
+        project.cover_media_id && (
+          <div className="container case-cover">
+            <MediaImage id={project.cover_media_id} eager />
+          </div>
+        )
       )}
       <div className="container case-overview">
         {project.description && (
@@ -80,6 +96,28 @@ export function CaseContent({
           </dl>
         )}
       </div>
+      {sample && (
+        <section
+          className="container case-captures"
+          aria-labelledby="case-captures-heading"
+        >
+          <h2 id="case-captures-heading">A PDP em desktop e mobile</h2>
+          <div className="case-capture-grid">
+            {sample.captures.map((capture) => (
+              <figure key={capture.src}>
+                <img
+                  src={capture.src}
+                  alt={capture.alt}
+                  width={capture.width}
+                  height={capture.height}
+                  loading="lazy"
+                />
+                <figcaption>{capture.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
       <BlockRenderer blocks={project.blocks} />
       {(project.external_url || project.demo_url) && (
         <div className="container case-links">
@@ -102,10 +140,7 @@ export function CaseContent({
 }
 export default function CaseStudy() {
   const { slug = "" } = useParams();
-  const loader = useCallback(
-    () => (configured ? getProject(slug) : Promise.resolve(null)),
-    [slug],
-  );
+  const loader = useCallback(() => getPublicProject(slug), [slug]);
   const state = useAsync(loader, null);
   const { data } = useSite();
   useMetadata(

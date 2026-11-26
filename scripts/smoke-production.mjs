@@ -68,7 +68,7 @@ try {
   await page.goto(`${origin}${base}#/projetos`);
   await page.reload();
   await expect(
-    page.getByRole("heading", { name: "Projetos & possibilidades." }),
+    page.getByRole("heading", { name: "Projetos", exact: true }),
   ).toBeVisible();
   await page.goto(`${origin}${base}#/admin`);
   await expect(
