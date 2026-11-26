@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useBlocker, useNavigate, useParams } from "react-router-dom";
-import { Eye, Save } from "lucide-react";
+import { ClipboardPaste, Eye, Save } from "lucide-react";
 import {
   getAutosavePreference,
   getProject,
@@ -21,6 +21,7 @@ import {
   useToast,
 } from "../../components/ui";
 import MediaPicker from "../../components/admin/MediaPicker";
+import ProjectPasteDialog from "../../components/admin/ProjectPasteDialog";
 import BlockEditor from "../../components/editors/BlockEditor";
 import { CaseContent } from "../CaseStudy";
 function blank(): Project {
@@ -69,6 +70,7 @@ export default function ProjectEditor() {
   const [error, setError] = useState<unknown>(null);
   const [busy, setBusy] = useState(false);
   const [preview, setPreview] = useState(false);
+  const [pasting, setPasting] = useState(false);
   const [validation, setValidation] = useState<string[]>([]);
   const [autosave, setAutosave] = useState(true);
   const [savedText, setSavedText] = useState("");
@@ -163,6 +165,7 @@ export default function ProjectEditor() {
       !autosave ||
       !dirty ||
       busy ||
+      pasting ||
       !project ||
       project.status !== "draft" ||
       attempt.current === fingerprint(project)
@@ -172,7 +175,7 @@ export default function ProjectEditor() {
       void save(undefined, true);
     }, 2200);
     return () => clearTimeout(timer);
-  }, [autosave, dirty, busy, project, save]);
+  }, [autosave, dirty, busy, pasting, project, save]);
   const update = (patch: Partial<Project>) =>
     setProject((p) => (p ? { ...p, ...patch } : p));
   if (loading) return <Loading />;
@@ -195,6 +198,16 @@ export default function ProjectEditor() {
           </span>
         </div>
         <div className="editor-actions">
+          {id === "novo" && (
+            <button
+              className="button secondary"
+              disabled={busy}
+              onClick={() => setPasting(true)}
+            >
+              <ClipboardPaste size={17} aria-hidden="true" />
+              Colar conteúdo
+            </button>
+          )}
           <button className="button secondary" onClick={() => setPreview(true)}>
             <Eye size={17} />
             Prévia
@@ -392,8 +405,11 @@ export default function ProjectEditor() {
                 label="Selecionar capa"
               />
               <p className="small muted">
-                Envie novos arquivos pela Biblioteca de mídia. O texto
-                alternativo é editado na biblioteca.
+                Salve o rascunho e envie as imagens pela{" "}
+                <Link className="text-link" to="/admin/midia">
+                  Biblioteca de mídia
+                </Link>
+                . O texto alternativo é editado na biblioteca.
               </p>
             </section>
             <section className="panel">
@@ -485,6 +501,22 @@ export default function ProjectEditor() {
           </aside>
         </div>
       </fieldset>
+      {pasting && id === "novo" && (
+        <ProjectPasteDialog
+          project={project}
+          taxonomy={data}
+          replacesEdits={dirty}
+          onClose={() => setPasting(false)}
+          onApply={(draft) => {
+            setProject(draft);
+            setValidation([]);
+            setPasting(false);
+            toast(
+              "Rascunho preenchido. Confira os campos e selecione as imagens.",
+            );
+          }}
+        />
+      )}
       {preview && (
         <Modal
           title="Pré-visualização privada"

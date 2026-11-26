@@ -90,6 +90,10 @@ where user_id = 'SEU_UUID_REAL';
 
 ## Primeiro projeto, do rascunho à publicação
 
+Para começar pelos textos, abra **Projetos → Novo projeto → Colar conteúdo**. Use **Copiar prompt** e envie o prompt ao ChatGPT com seus textos ou a PDP. Cole a resposta, clique em **Conferir conteúdo** e depois **Preencher rascunho**. O painel preenche os campos, seleciona categorias e tecnologias já cadastradas e cria os blocos na ordem da resposta. Depois de salvar, envie a capa e as imagens pela **Biblioteca de mídia** e vincule os arquivos aos blocos. Revise na prévia e publique quando terminar.
+
+Para montar um projeto manualmente:
+
 1. Entre em `/#/admin`.
 2. Revise **Sobre mim**, **Contatos**, **Página inicial** e **Configurações**. Os contatos iniciais vieram do site anterior; confirme que continuam corretos.
 3. Em **Categorias & tecnologias**, revise os itens iniciais ou crie outros.

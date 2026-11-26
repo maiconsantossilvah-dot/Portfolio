@@ -248,6 +248,14 @@ export default function BlockEditor({
                     onChange={(e) => update(i, { label: e.target.value })}
                   />
                 </Field>
+                {b.block_type === "video" && (
+                  <Field label="Legenda">
+                    <input
+                      value={b.content.caption || ""}
+                      onChange={(e) => update(i, { caption: e.target.value })}
+                    />
+                  </Field>
+                )}
                 {b.block_type === "embed" && (
                   <p className="small muted">
                     Somente links autorais e autorizados. A prévia restringe
